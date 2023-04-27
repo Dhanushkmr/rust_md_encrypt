@@ -1,4 +1,5 @@
 use magic_crypt::{new_magic_crypt, MagicCryptError, MagicCryptTrait};
+use std::error::Error;
 
 pub fn make_mc(key: String) -> magic_crypt::MagicCrypt256 {
     println!("{}", key);
@@ -30,7 +31,7 @@ pub fn overwrite_file(file_path: &String, contents: String) {
     std::fs::write(file_path, contents).unwrap();
 }
 
-pub fn list_md_files() -> Vec<String> {
+pub fn list_md_files() -> Result<Vec<String>, Box<dyn Error>> {
     let mut files: Vec<String> = Vec::new();
     let paths = std::fs::read_dir("./").unwrap();
     for path in paths {
@@ -41,5 +42,8 @@ pub fn list_md_files() -> Vec<String> {
             println!("{}", &path_str);
         }
     }
-    return files;
+    if files.len() == 0 {
+        return Err("No markdown files found".into());
+    }
+    Ok(files)
 }
