@@ -10,7 +10,7 @@ fn main() {
     for file in md_files {
         // encrypt or decrypt
 
-        println!("Encrypting ... {}", &file);
+        println!("{} ... {}", args.mode.to_string(), &file);
         let contents = helpers::read_file(&file);
         match args.mode {
             Mode::Encrypt => {

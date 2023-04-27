@@ -2,7 +2,7 @@ use magic_crypt::{new_magic_crypt, MagicCryptError, MagicCryptTrait};
 use std::error::Error;
 
 pub fn make_mc(key: String) -> magic_crypt::MagicCrypt256 {
-    println!("{}", key);
+    println!("This is your key: *do not forget it!* {} \n", key);
     let mc = new_magic_crypt!(key, 256);
     return mc;
 }
@@ -18,7 +18,16 @@ pub fn decrypt(
 ) -> Result<String, MagicCryptError> {
     match mc.decrypt_base64_to_string(encrypted_input) {
         Ok(decrypted) => Ok(decrypted),
-        Err(e) => Err(e),
+        Err(e) => match e {
+            MagicCryptError::DecryptError(_) => {
+                eprintln!("Wrong key! Please try again.");
+                Err(e)
+            }
+            _ => {
+                eprintln!("Error: {}", e);
+                Err(e)
+            }
+        },
     }
 }
 
@@ -39,7 +48,7 @@ pub fn list_md_files() -> Result<Vec<String>, Box<dyn Error>> {
         let path_str = path.to_str().unwrap();
         if path_str.ends_with(".md") {
             files.push(path_str.to_string());
-            println!("{}", &path_str);
+            // println!("{}", &path_str);
         }
     }
     if files.len() == 0 {
