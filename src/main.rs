@@ -1,4 +1,4 @@
-use rust_md_encrypt as helpers;
+use vault as helpers;
 mod args;
 use args::{CliArgs, Mode};
 use clap::Parser;

@@ -1,5 +1,5 @@
 [package]
-name = "rust_md_encrypt"
+name = "vault"
 version = "0.1.0"
 edition = "2021"
 

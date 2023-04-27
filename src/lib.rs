@@ -2,7 +2,7 @@ use magic_crypt::{new_magic_crypt, MagicCryptError, MagicCryptTrait};
 use std::error::Error;
 
 pub fn make_mc(key: String) -> magic_crypt::MagicCrypt256 {
-    println!("This is your key: *do not forget it!* {} \n", key);
+    println!("This is your key *do not forget it!* : {} \n", key);
     let mc = new_magic_crypt!(key, 256);
     return mc;
 }

@@ -5,26 +5,24 @@ A CLI tool written with CLAP for easy encrypting/decrypting .md files in a folde
 ## Usage
 
 1. Clone this repo
-`git clone https://github.com/Dhanushkmr/rust_md_encrypt/`
+   `git clone https://github.com/Dhanushkmr/rust_md_encrypt/`
 
 2. Open the repo
-`cd rust_md_encrypt`
+   `cd rust_md_encrypt`
 
 3. Build it!
-`cargo build --release`
+   `cargo build --release`
 
 4. Add to your binaries
-`cargo install --path .`
+   `cargo install --path .`
 
 5. Go to your obsidian Vault
-`cd <PATH-TO-OBSIDIAN-VAULT>`
+   `cd <PATH-TO-OBSIDIAN-VAULT>`
 
 6. To encrypt:
-`rust_md_encrypt <KEY> encrypt`
+   `vault <KEY> encrypt` or `vault <KEY> e`
 
 !!! Do not forget your key (support for environment variable coming soon!) !!!
 
 7. To decrypt:
-`rust_md_encrypt <KEY> decrypt`
-
-
+   `vault <KEY> decrypt` or `vault <KEY> d`
