@@ -13,10 +13,15 @@ fn main() {
         println!("{} ... {}", args.mode.to_string(), &file);
         let contents = helpers::read_file(&file);
         match args.mode {
-            Mode::Encrypt => {
-                let encrypted = helpers::encrypt(contents, &mc);
-                helpers::overwrite_file(&file, encrypted);
-            }
+            Mode::Encrypt => match helpers::decrypt(contents.clone(), &mc) {
+                Ok(_) => {
+                    panic!("File already encrypted!")
+                }
+                Err(_) => {
+                    let encrypted = helpers::encrypt(contents, &mc);
+                    helpers::overwrite_file(&file, encrypted);
+                }
+            },
             Mode::Decrypt => {
                 let decrypted = helpers::decrypt(contents, &mc).unwrap();
                 helpers::overwrite_file(&file, decrypted);

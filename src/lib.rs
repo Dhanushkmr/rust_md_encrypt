@@ -23,6 +23,10 @@ pub fn decrypt(
                 eprintln!("Wrong key! Please try again.");
                 Err(e)
             }
+            MagicCryptError::Base64Error(_) => {
+                eprintln!("Your file is not encrypted!");
+                Err(e)
+            }
             _ => {
                 eprintln!("Error: {}", e);
                 Err(e)
