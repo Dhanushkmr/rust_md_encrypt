@@ -3,7 +3,7 @@ use clap::{Parser, ValueEnum};
 #[derive(Parser)]
 #[command(name = "Markdown file locker", version, author)]
 pub struct CliArgs {
-    pub key: String,
+    // pub key: String,
     #[arg(value_enum)]
     pub mode: Mode,
 }

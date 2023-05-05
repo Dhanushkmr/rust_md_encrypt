@@ -1,5 +1,11 @@
 use magic_crypt::{new_magic_crypt, MagicCryptError, MagicCryptTrait};
+use rpassword::prompt_password;
 use std::error::Error;
+
+pub fn read_password_hidden() -> String {
+    let password = prompt_password("Enter your key: ");
+    password.unwrap()
+}
 
 pub fn make_mc(key: String) -> magic_crypt::MagicCrypt256 {
     println!("This is your key *do not forget it!* : {} \n", key);

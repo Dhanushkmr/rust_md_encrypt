@@ -5,7 +5,8 @@ use clap::Parser;
 
 fn main() {
     let args = CliArgs::parse();
-    let mc = helpers::make_mc(args.key);
+    let password = helpers::read_password_hidden();
+    let mc = helpers::make_mc(password);
     let md_files = helpers::list_md_files().unwrap();
     for file in md_files {
         // encrypt or decrypt
